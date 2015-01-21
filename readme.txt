@@ -41,7 +41,7 @@ Oh yes provided that the administrator whom you want to have a different capabil
 = Will my selected controller can remove me as controller? =
 Unfortunately yes. As controller he has the power to change the settings at the back. He can either remove or change your capabilities or make you a subscriber. Anything is possible.
 
-= Screenshots =
+== Screenshots ==
 1. Main CLS page
 2. CLS @ Dashboard
 3. CLS @ Posts / Pages
