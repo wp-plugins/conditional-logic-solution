@@ -22,7 +22,7 @@ CLS stands by it's name. It is a conditional logic design to empower site owners
 
 
 == Installation ==
-1. Upload `userSwitcher` to the `/wp-content/plugins/` directory
+1. Upload `conditional-logic-solution` to the `/wp-content/plugins/` directory
 1. Activate the plugin through the 'Plugins' menu in WordPress
 1. Once activated, go to -> Settings -> Conditional Logic menu to configure the main settings.
 
