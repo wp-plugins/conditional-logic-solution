@@ -1,7 +1,7 @@
 <script type="text/template" id="cls-dashboard">
 <form method="post" class="cls-wrapper cls-dashboard">        
-    <h3 class="cls-title cls-green">Keep this hidden if ... <span class="cls-icon-right"><small class="dashicons dashicons-admin-generic"></small></span></h3>
-    <span class="cls-icon-loading"></span> 
+    <h3 class="cls-title cls-green">Conditional Logic Solution <span class="cls-icon-right"><small class="dashicons dashicons-admin-generic"></small></span></h3>
+    <p class="cls-desc description">Keep this hidden if... <span class="cls-icon-loading"></span></p> 
     <div class="cls-box">
         <?php
         $roles = array_keys( $this->get_roles() );
@@ -15,7 +15,7 @@
                 'role' => __('User Group'),
                 'USERS' => $this->get_roles()
             ),
-            'after' => '<span class="cls-sep">is</span>',
+            'after' => '<span class="dashicons dashicons-leftright"></span>',
             'value' => ''
         ));
         

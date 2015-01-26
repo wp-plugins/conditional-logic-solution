@@ -6,7 +6,7 @@ class cls_widgets extends class_cls {
                 add_action( 'in_widget_form', array($this, 'widget' ), 999, 3 );
                 
                 if( is_admin() ){
-                        add_action( 'dynamic_sidebar_after', array($this, 'before_sidebar'), 999);
+                        add_action( 'dynamic_sidebar_before', array($this, 'before_sidebar'), 999);
                 }
                 
                 add_filter( 'is_active_sidebar', array( $this, 'is_active_sidebar' ), 999, 2 );
@@ -31,6 +31,8 @@ class cls_widgets extends class_cls {
                         elseif( $type == 'template' ){
                                 $template = $users[$pos];
                                 if( ( is_home() && $template == 'homepage' )
+                                   || ( is_singular() && get_post_type() == 'post' && $template = 'single' )
+                                   || ( is_page() && $template == 'page' )
                                    || ( is_archive() && $template == 'archive' )
                                    || ( is_category() && $template == 'category' )
                                    || ( is_search() && $template == 'search' )
@@ -68,10 +70,26 @@ class cls_widgets extends class_cls {
                 if( isset($_REQUEST['cls_sidebars'] ) ){
                         $this->id = 'cls_sidebars';
                 }
-                if( isset( $_REQUEST['cls_widgets'] ) ){
+                else if( isset( $_REQUEST['cls_widgets'] ) ){
                         $this->id = 'cls_widgets';
                 }
-                parent::save_settings();
+                $values = $this->values( $this->id );
+                $req = $_REQUEST[$this->id];
+                
+                foreach( (array) $req as $key => $value ){
+                        if( isset( $values[$key] ) ){
+                                if( empty( $value ) ) unset( $values[$key] );
+                                else {
+                                        $values[$key] = $value;
+                                }
+                        }
+                        else {
+                                $values[$key] = $value;
+                        }
+                }
+                
+                update_option( $this->id, $values);
+                return $value;
         }
         
         public function values( $for = "cls_sidebars" ){
@@ -87,6 +105,7 @@ class cls_widgets extends class_cls {
         public function widget($widget, $return, $instance){
                 $number = $widget->number;
                 $values = $this->values('cls_widgets');
+                
                 printf('<div class="cls-widgets" data-widget="%1$s" data-number="%2$s"></div>', $widget->id, $number); ?>
                         
                 <script type="text/javascript">
@@ -110,6 +129,7 @@ class cls_widgets extends class_cls {
                         $templates = array(
                         'homepage' => __('Home Page'),
                         'single' => __('Single Post'),
+                        'page' => __('Pages'),
                         'archive' => __('Archive'),
                         'category' => __('Category'),
                         'tag' => __('Tag'),

@@ -142,12 +142,15 @@
 .cls-dashboard {
     margin-bottom: 15px;
 }
-.cls-dashboard .cls-title,
+.wp-core-ui .cls-dashboard .cls-title,
 .cls-widgets .cls-title,
 .cls-sidebars .cls-title {
     background-position: 10px center;
     border: 1px #eee solid;
     background-color: #fafafa;
+}
+.wp-core-ui .cls-dashboard .cls-box {
+    display: none;
 }
 .cls-wrapper .cls-icon-right,
 .cls-widgets .cls-icon-right,
@@ -175,10 +178,10 @@
 .cls-widgets .cls-box,
 .cls-sidebars .cls-box {
     margin:0;
-    padding: 15px;
+    padding: 5px 15px;
     border: 1px #f0f0f0 solid;
     border-top: 0;
-    display: none;
+    
 }
 .cls-setting-inside {
     position: relative;
@@ -263,9 +266,72 @@
 .cls-faq-box p {
     margin-left: 15px;
 }
+.wp-core-ui .cls-desc {
+    padding: 15px;
+    font-size: 16px;
+    display: none;
+}
 #cls_setting_page .cls-faq-box a[href] {
     color: #004E98;
 }
+.cls-info-box {
+    max-width: 250px;
+}
+/* Test */
+.wp-core-ui .cls-ui-icon {
+    position: absolute;
+    right:0;
+    top: 40px;
+    border: 3px green solid;
+    border-width: 0 0 0 3px;
+    width: 40px;
+    height: 30px;
+    background: rgba(0, 0, 0, 0.1) url(imgs/logo.png) no-repeat center center;
+    background-size: 90% 70%;
+    cursor: pointer;
+}
+.wp-core-ui .cls-ui-icon-open {
+    width: 100%;
+    z-index: 99;
+    background: #fff;
+}
+.wp-core-ui .cls-field-box {
+    position: relative;
+    border: 1px #ddd solid;
+    margin: -20px 0 0 0;
+    padding: 15px 10px;
+    border-left: 3px green solid;
+}
+.wp-core-ui .bf-half {
+    position: relative;
+    float: left;
+    width: 50%;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.wp-core-ui .cls-field-box select {
+   width: 80%;
+}
+.wp-core-ui .cls-field-box .cls-box {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+.wp-core-ui .cls-widget-area {
+    margin: 0;
+    border: 0;
+    background: #eee;
+}
+.wp-core-ui .cls-widget-area .cls-adder,
+.wp-core-ui .cls-widget-area .cls-remove {
+    position: absolute;
+    right: -20px;
+    top: -10px;
+}
+.wp-core-ui .cls-field-box .description {
+    font-size: 16px;
+}
+
 @media screen and (min-width: 768px){
     .cls-right {
         float: right;

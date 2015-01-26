@@ -43,10 +43,10 @@
                 },
                 _save:function(){
                         var form = this.$el.find('form'), params = form.serialize(),
-                                icon = $('.cls-icon-loading');
+                                icon = $('.cls-icon-loading', this.$el);
                                 
                         icon.show();
-                        $.post(CLS.ajaxurl + '?action=clssettings', params, function(){
+                        $.post(CLS.ajaxurl + '?action=clssettings', params, function(res){
                                 icon.hide();
                                 });
                 },
@@ -69,12 +69,12 @@
                 clone.appendTo(cls_box.parent());
         };
         var doRemove = function(){
-                var target = $(this), cls_box = target.parents('.cls-box');
+                var target = $(this), cls_box = target.parents('.cls-box').first();
                 cls_box.remove();
         };
         var getValues = function(){
                 var target = $(this), val = target.val(),
-                cls_box = target.parents('.cls-box'),
+                cls_box = target.parents('.cls-box').first(),
                 loader = cls_box.find('.cls-loader'),
                 values = cls_box.find('.cls_value');
                 loader.addClass('cls-loading');

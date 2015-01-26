@@ -6,7 +6,7 @@
                         'click .cls-title' : 'toggleBoxes'
                 }),
                 toggleBoxes:function(ev){
-                        var boxes = this.$el.find('.cls-box'), isopen = boxes.is(':visible');
+                        var boxes = this.$el.find('.cls-box, .cls-desc'), isopen = boxes.is(':visible');
                         boxes[isopen ? 'slideUp' : 'slideDown']();
                 },
                 save:function(ev){

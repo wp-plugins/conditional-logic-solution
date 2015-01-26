@@ -231,6 +231,10 @@ global $wp_roles;
             <div class="clear"></div>
         </div>
         <div id="cls-faqs" class="cls-tab-content">
+            <div class="cls-info-box pull-right">
+                <h3>Need more?</h3>
+                <p class="">If you think CLS is not enough do send your request right <a href="" target="_blank">here</a>.</p>
+            </div>
             <h3>Where to ...</h3>
             <div class="cls-faq-box">
                 <p class="bf-title">Set the control for dashbord widgets.</p>

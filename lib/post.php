@@ -354,7 +354,7 @@ class cls_posts extends class_cls {
                                 'choices' => $users,
                                 'after' => ' to <span class="cls-adder" title="Repeat"><i class="dashicons dashicons-plus-alt"></i></span>',
                         ));
-                        
+                        echo '<div class="clear"><br></div>';
                         basefield(array(
                                 'type' => 'checkbox',
                                 'name' => 'caps',
