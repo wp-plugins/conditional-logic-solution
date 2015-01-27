@@ -96,10 +96,9 @@ class cls_posts extends class_cls {
         public function posts_per_page( $per_page ){
                 global $wp_query;
                 
-                if( $wp_query->is_main_query() ){
-                        $post_type = $wp_query->get('post_type');
+                if( !is_admin() && $wp_query->is_main_query() ){                       
                         
-                        if( $this->is_post() ){                                
+                        if( !is_search() && $this->is_post() ){                                
                                 if( (int) $this->values->per_page > 0 ) $per_page = (int) $this->values->per_page;
                         }                        
                 }
