@@ -1,6 +1,7 @@
 <?php
 class cls_widgets extends class_cls {
         var $id = 'cls_widgets';
+        var $template;
         
         public function __construct(){
                 add_action( 'in_widget_form', array($this, 'widget' ), 999, 3 );
@@ -11,8 +12,14 @@ class cls_widgets extends class_cls {
                 
                 add_filter( 'is_active_sidebar', array( $this, 'is_active_sidebar' ), 999, 2 );
                 add_action( 'widget_display_callback', array( $this, 'widget_callback' ), 999, 3);
+                add_filter( 'template_include', array( $this, 'get_template') );
                 
                 parent::__construct();
+        }
+        
+        public function get_template( $template ){
+                $this->template = $template;
+                return $template;
         }
         
         public function can( $values ){
@@ -30,39 +37,59 @@ class cls_widgets extends class_cls {
                         }
                         elseif( $type == 'template' ){
                                 $template = $users[$pos];
-                                if( ( is_home() && $template == 'homepage' )
-                                   || ( is_singular() && get_post_type() == 'post' && $template = 'single' )
-                                   || ( is_page() && $template == 'page' )
-                                   || ( is_archive() && $template == 'archive' )
-                                   || ( is_category() && $template == 'category' )
-                                   || ( is_search() && $template == 'search' )
-                                   || ( is_tag() && $template == 'tag' )
-                                   || ( is_404() && $template == '404' ) ){
-                                        return false;
-                                }
+                               
+                               if( $template == 'homepage' && is_home() ) return false;
+                              
+                               if( $template == 'page' && is_page() ) return false;
+                              
+                               if( $template == '404' && is_404() ) return false;
+                              
+                               if( $template == 'single' && is_singular() && 'post' == get_post_type() ) return false;
+                              
+                               if( $template == 'archive' && is_archive() ) return false;
+                              
+                               if( $template == 'category' && is_category() ) return false;
+                               
+                               if( $template == 'tag' && is_tag() ) return false;
+                               
+                               if( $template == 'search' && is_search() ) return false;
+                               
+                               if( $template == 'author' && is_author() ) return false;                        
+                               
+                               $post = get_post();
+                               $template_id = get_post_meta( $post->ID, '_wp_page_template', true );
+                               
+                               if( $template == $template_id ) return false;
                         }
                 }
                 return true;
         }
         
         public function is_active_sidebar( $is_active_sidebar, $index ){
-                $values = $this->values( 'cls_sidebars' );
-                if( $is_active_sidebar && isset( $values[$index] ) ){
-                        $value = $values[$index];
-                        $is_active_sidebar = $this->can( $value );
+                if( !is_admin() ){
+                        $values = $this->values( 'cls_sidebars' );
+                      
+                        if( $is_active_sidebar && isset( $values[$index] ) ){
+                                $value = $values[$index];
+                                $is_active_sidebar = $this->can( $value );
+                        }
                 }
                 return $is_active_sidebar;
         }
         
-        public function widget_callback( $instance, $widget, $args ){ 
-                $index = $widget->id;
-                $values = $this->values( 'cls_widgets' );
-               
-                if( isset( $values[$index] ) ){ 
-                        $value = $values[$index];
-                        $return = $this->can( $value );                        
-                        return !$return ? false : $instance;
-                }
+        public function widget_callback( $instance, $widget, $args ){
+                
+                if( !is_admin() ){
+                        $index = $widget->id;
+                        $values = $this->values( 'cls_widgets' );                       
+                        if( isset( $values[$index] ) ){ 
+                                $value = $values[$index];
+                                $return = $this->can( $value );
+                                
+                                if( ! $return ) return false;
+                                //return !$return ? false : $instance;
+                        }
+                } 
                 return $instance;
         }
         
@@ -100,6 +127,7 @@ class cls_widgets extends class_cls {
         
         public function before_sidebar($index){
                 printf('<div class="cls-sidebars" data-sidebar="%s"></div>', $index);
+                
         }
         
         public function widget($widget, $return, $instance){
@@ -130,11 +158,12 @@ class cls_widgets extends class_cls {
                         'homepage' => __('Home Page'),
                         'single' => __('Single Post'),
                         'page' => __('Pages'),
-                        'archive' => __('Archive'),
-                        'category' => __('Category'),
-                        'tag' => __('Tag'),
-                        '404' => __('404 Error Page'),
-                        'search' => __('Search Template')
+                        'archive' => __('Archives'),
+                        'category' => __('Category Archives'),
+                        'tag' => __('Tag Archives'),
+                        '404' => __('404 (Not Found)'),
+                        'search' => __('Search Results'),
+                        'author' => __('Author Template'),
                         ) + wp_get_theme()->get_page_templates();
                         
                         parent::admin_footer();
