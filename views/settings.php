@@ -69,8 +69,8 @@ global $wp_roles;
                 'post' => '<span class="dashicons dashicons-admin-post"></span> '. __('POSTS') . ' and <span class=" dashicons dashicons-admin-page"></span>'. __('PAGES') .
                         '<p class="description">Allows you to modify, control it\'s visibility, and change your users capabilities for posts and pages.</p>',
                 'widgets' => '<span class="dashicons dashicons-visibility"></span> '. __('SIDEBARS & WIDGETS') .
-                        '<p class="description">Allows you to control the visibility of your sidebars and sidebar widgets per user, user group and page templates.</p>',
-                );
+                        '<p class="description">Allows you to control the visibility of your sidebars and sidebar widgets per user, user group and page templates.</p>'
+            );
             $apps = apply_filters( "cls_apps", $apps );
             
             basefield(array(
@@ -231,6 +231,10 @@ global $wp_roles;
             <div class="clear"></div>
         </div>
         <div id="cls-faqs" class="cls-tab-content">
+            <div class="cls-info-box pull-right">
+                <h3>Need more?</h3>
+                <p class="">If you think CLS is not enough do send your request right <a href="" target="_blank">here</a>.</p>
+            </div>
             <h3>Where to ...</h3>
             <div class="cls-faq-box">
                 <p class="bf-title">Set the control for dashbord widgets.</p>

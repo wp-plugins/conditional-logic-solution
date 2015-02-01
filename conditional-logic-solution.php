@@ -3,7 +3,7 @@
  * Plugin Name: Conditional Logic Solution
  * Plugin URI: http://irenemitchell.com/conditional-logic-solution/
  * Description: The complete control solution for wordpress powered site. CLS stands by it's name. It is a conditional logic design to empower site owners to have absolute control in most areas, if not all, of their site. It provides control to modify what users can and cannot do. And control contents visibility according to user, user group, and currently use page template.
- * Version: 1.0
+ * Version: 1.1
  * Author: Irene A. Mitchell
  * Author URI: http://irenemitchell.com
  * Requires at least: 3.8
