@@ -44,6 +44,7 @@ if( ! function_exists( 'basefield' ) ):
                         'value' => '',
                         'name' => '',
                         'id' => '',
+                        'div_class' => '',
                         'echo' => true
                 ));
                 
@@ -55,7 +56,8 @@ if( ! function_exists( 'basefield' ) ):
                 }
                 extract( $args );
                 
-                foreach( array('label', 'sub', 'choices', 'echo', 'buttons', 'before', 'after', 'selected' ) as $extra ){ unset( $args[$extra]); }
+                foreach( array('div_class', 'label', 'sub', 'choices', 'echo', 'buttons', 'before', 'after', 'selected' ) as $extra ){ unset( $args[$extra]); }
+                
                 $label_class = apply_filters( 'basefield_label_class', array('bf-title') );
                 $label_attr = array('class' => implode(" ", $label_class));
                 $label = !empty( $label ) ? basefield_tag( 'label', $label_attr, $label ) : '';
@@ -178,12 +180,21 @@ if( ! function_exists( 'basefield' ) ):
                 }
                 $html .= $after;
                 
-                if( !empty( $sub ) ){
-                        $html .= basefield_tag( 'i', array('class' => 'bf-sub'), $sub );
-                }
+                if( !empty( $sub ) ) $html .= basefield_tag( 'p', array('class' => 'bf-sub'), $sub );
+                      
                 $name = preg_replace('%[\[\]]%', '', $name);
                 $name = empty($name) ? $id : $name;
-                $html = basefield_tag('div', apply_filters( 'basefield_wrapper', array('class' => 'bf-div bf-'. $name ), $html, $args ), $html );
+                $div_class = explode(' ', $div_class);
+                $div_class[] = 'bf-' . $name;
+                array_unshift( $div_class, 'bf-div' );
+                
+                $div_args = array('class' => implode(' ', $div_class ) );
+                
+                if( $type == 'html' ) $div_args = wp_parse_args( $div_args, $args );
+                
+                unset( $div_args['type'] );
+                
+                $html = basefield_tag('div', apply_filters( 'basefield_wrapper',  $div_args, $html, $args ), $html );
                 if( $echo ) _e( $html );
                 else return $html;
         }
