@@ -3,7 +3,7 @@ Contributors: irenem
 Tags: users, roles, capabilities, posts, pages, widgets, sidebars
 Requires at least: 3.4
 Tested up to: 4.1
-Stable tag: trunk
+Stable tag: 1.1
 License: GGPLv2 or later
 
 The complete control solution for wordpress powered site.
@@ -47,3 +47,7 @@ Unfortunately yes. As controller he has the power to change the settings at the 
 3. CLS @ Posts / Pages
 4. Per posts/page CLS
 5. CLS @ Widget page
+
+== Changelog ==
+= 1.1 = 
+* Fixed sidebar ui, widget visibility not showing in customizer page.
