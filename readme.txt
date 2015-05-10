@@ -2,9 +2,9 @@
 Contributors: irenem
 Tags: users, roles, capabilities, posts, pages, widgets, sidebars
 Requires at least: 3.4
-Tested up to: 4.1
-Stable tag: 1.1
-License: GGPLv2 or later
+Tested up to: 4.2
+Stable tag: 1.2
+License: GPLv2 or later
 
 The complete control solution for wordpress powered site.
 
@@ -17,8 +17,9 @@ CLS stands by it's name. It is a conditional logic design to empower site owners
 1. Set or reset users capabilities.
 1. Add new user group.
 1. Controls dashboard widgets visibilities for selected user or user group.
-1. Modify the behaviour of your of your posts and pages. Control it's visiblity according to user or user group.
+1. Control the visibility of your posts and pages.
 1. Controls the visibility of your sidebars, and sidebar widgets per user, user group, and current page templates.
+1. Control product's (Woocommerce) visibility and capabilities.
 
 
 == Installation ==
@@ -51,3 +52,6 @@ Unfortunately yes. As controller he has the power to change the settings at the 
 == Changelog ==
 = 1.1 = 
 * Fixed sidebar ui, widget visibility not showing in customizer page.
+
+= 1.2 =
+* Added Woocommerce CLS controls.
